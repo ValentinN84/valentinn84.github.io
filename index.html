@@ -1,0 +1,217 @@
+
+
+<!DOCTYPE html>
+
+</style>
+<html>
+<head>
+    <title>Logan Wheel Configurator v0.1</title>
+    <!-- Insert this script -->
+
+    <script type="text/javascript" src="https://d2f25wgezub9nf.cloudfront.net/api/sketchfab-viewer-1.0.0.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.1/jquery.min.js"></script>
+    <script src="http://www.shaderbytes.co.za/sketchfab/development/api/examples/SketchfabAPIUtility.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>   
+</head>
+<!-- Some divs to wrap the model iframes and two buttons -->
+<body class="body">
+<div class="about">
+	Created by 
+	<a href="http://vrntech.ro">Valentin "VRN" Nadolu</a></br>
+    Made with the Sketchfab Viewer API.
+    <a href="https://github.com/sketchfab/experiments/tree/master/configurator/src">Source on Github</a></br>
+	Also uses shaderbyte's Utility
+	<a href="https://forum.sketchfab.com/t/viewer-api-and-javascript-development/7748">Sketchfab forum thread</a>
+    <div class="share-button">
+
+</div>
+    <div class="container">
+        <!-- The sketchfab iframe -->
+        <div class="bgdesigndesktop">
+            <div class="embed-responsive embed-responsive-16by9">
+                <div class="loadingImage"></div>
+                <iframe id="api-frame" class="embed-responsive-item" allowfullscreen mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+            </div>
+        </div>
+        <!-- A bunch of buttons -->
+        <div style="margin-top: 20px" id="showObjectsEventParent">
+            <div class="btn-group" role="group">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Wheel options<span class="caret"></span></button>
+                <ul class="dropdown-menu">
+                    
+                                
+                    
+                </ul>
+            </div>
+            
+        </div>
+    </div>
+
+   
+
+
+   
+
+    <!-- Your new script -->
+
+    <script>
+
+        function onSketchfabUtilityReady() {
+			 $(".dropdown-menu")[0].innerHTML = '<li><a data-buttonid="Standard" class="showObjectsEventTarget">Standard Steelies 15x6.5 185/65R15</li><li><a data-buttonid="EnkeiRPF1" class="showObjectsEventTarget">Enkei RPF1 17x7 205/40R17</li><li><a data-buttonid="RotaGrid" class="showObjectsEventTarget">Rota Grid 17x9 205/40R17</li><li><a data-buttonid="Wide Steelies" class="showObjectsEventTarget">Wide Steelies 15x8 185/65R15</li><li><a data-buttonid="ATS15" class="showObjectsEventTarget">ATS DTC 15x7 195/50R15</li><li><a data-buttonid="ATS17" class="showObjectsEventTarget">ATS DTC 17x7.5 205/40R17</li>';
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 1,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 1,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 0,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            //add mouse events to dropdowns
+            $("#showObjectsEventParent").on("click", ".showObjectsEventTarget", function (event) {
+                ChangeObjectsVisibility(event.currentTarget)
+            });		
+		}
+		
+		        // The mouse event is passing the target dom object instead of just the dataset values so we can manipulate the dom object as well
+        function ChangeObjectsVisibility(targetDomElement) {
+
+            //get the dataset value
+            var nodeName = targetDomElement.dataset.buttonid;
+
+            var nodeIndex = targetDomElement.dataset.index;
+            
+            //change the sketchfab objects visibility
+            if (nodeName == 'Standard') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 1,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 1,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 0,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+            if (nodeName == 'EnkeiRPF1') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 0,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 1,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 0,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 1,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+            if (nodeName == 'RotaGrid') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 0,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 0,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 1,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 1,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+            if (nodeName == 'Wide Steelies') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 0,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 0,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 1,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 1,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+			if (nodeName == 'ATS15') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 0,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 0,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 1,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 0,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 1,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+			if (nodeName == 'ATS17') {
+                		sketchfabAPIUtility.setNodeVisibility(`Body_Glass_1`, 1,0);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_2`, 1,1);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_3`, 1,2);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_4`, 1,3);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_5`, 1,4);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_6`, 1,5);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_7`, 1,6);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Glass_8`, 1,7);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Stock`, 0,8);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RPF1`, 0,9);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_prestige`, 0,10);
+						sketchfabAPIUtility.setNodeVisibility(`brakes_low`, 1,11);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_RotaGrid`, 0,12);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_Steelies`, 0,13);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS17`, 1,14);
+						sketchfabAPIUtility.setNodeVisibility(`Wheels_ATS15`, 0,15);
+						sketchfabAPIUtility.setNodeVisibility(`Body_Main`, 1,16);
+            } 
+
+        }
+
+
+        var sketchfabAPIUtility = new SketchfabAPIUtility('2e81f06a5f384c638f270e0db1a1ce7b', document.getElementById('api-frame'), onSketchfabUtilityReady);
+       
+
+    </script>
+</body>
+</html>
